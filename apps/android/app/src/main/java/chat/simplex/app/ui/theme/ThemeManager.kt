@@ -20,6 +20,7 @@ object ThemeManager {
       DefaultTheme.SYSTEM.name -> Pair(systemThemeColors, DefaultTheme.SYSTEM)
       DefaultTheme.DARK.name -> Pair(DarkColorPalette, DefaultTheme.DARK)
       DefaultTheme.LIGHT.name -> Pair(LightColorPalette, DefaultTheme.LIGHT)
+      DefaultTheme.BLUE.name -> Pair(BlueColorPalette, DefaultTheme.BLUE)
       else -> Pair(systemThemeColors, DefaultTheme.SYSTEM)
     }
     return res.copy(first = res.first.copy(primary = Color(appPrefs.primaryColor.get())))
@@ -47,6 +48,13 @@ object ThemeManager {
         DarkColorPalette,
         DefaultTheme.DARK,
         generalGetString(R.string.theme_dark)
+      )
+    )
+    allThemes.add(
+      Triple(
+        BlueColorPalette,
+        DefaultTheme.BLUE,
+        generalGetString(R.string.theme_blue)
       )
     )
     return allThemes

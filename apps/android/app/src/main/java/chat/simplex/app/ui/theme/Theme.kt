@@ -2,16 +2,27 @@ package chat.simplex.app.ui.theme
 
 import android.app.UiModeManager
 import android.content.Context
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.*
 import androidx.compose.ui.unit.dp
 import chat.simplex.app.SimplexApp
 import kotlinx.coroutines.flow.MutableStateFlow
 
 enum class DefaultTheme {
-  SYSTEM, DARK, LIGHT
+  SYSTEM, DARK, LIGHT, BLUE
+}
+
+fun Modifier.themedBackground(shape: Shape = RectangleShape): Modifier {
+  return if (CurrentColors.value.second == DefaultTheme.BLUE) {
+    this.background(brush = Brush.linearGradient(listOf(Color(0xff0C0B13), Color(0xff151D36)), Offset(0f, Float.POSITIVE_INFINITY), Offset(Float.POSITIVE_INFINITY, 0f)), shape = shape)
+  } else {
+    this.background(color = CurrentColors.value.first.background, shape = shape)
+  }
 }
 
 val DEFAULT_PADDING = 16.dp
@@ -42,6 +53,20 @@ val LightColorPalette = lightColors(
 //  onSecondary = Color.Black,
 //  onBackground = Color.Black,
 //  onSurface = Color.Black,
+)
+
+val BlueColorPalette = darkColors(
+  primary = SimplexBlue,  // If this value changes also need to update #0088ff in string resource files
+  primaryVariant = SimplexGreen,
+  secondary = DarkGray,
+  //  background = Color.Black,
+  //  surface = Color.Black,
+  //  background = Color(0xFF121212),
+  //  surface = Color(0xFF121212),
+  //  error = Color(0xFFCF6679),
+  onBackground = Color(0xFFFFFBFA),
+  onSurface = Color(0xFFFFFBFA),
+  //  onError: Color = Color.Black,
 )
 
 val CurrentColors: MutableStateFlow<Pair<Colors, DefaultTheme>> = MutableStateFlow(ThemeManager.currentColors(isInNightMode()))

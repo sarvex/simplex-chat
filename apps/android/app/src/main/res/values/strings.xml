@@ -1147,6 +1147,7 @@
   <string name="theme_system">System</string>
   <string name="theme_light">Light</string>
   <string name="theme_dark">Dark</string>
+  <string name="theme_blue">Blue</string>
 
   <!-- Languages -->
   <string name="language_system">System</string>
